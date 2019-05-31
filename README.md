@@ -1,3 +1,13 @@
+# Instructions
+
+Run `npm install` in both the frontend and backend folder
+
+In the frontend folder run `ng serve` to start the front end part of the project
+In the backend folder run `npm run dev` to start the back end part of the project
+From anywhere, run `sudo service mongod start` to start the MongoDB part of the project
+
+Note: You will need to set up [MongoDB manually](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). Use the models folder as a reference
+
 # MTGDuel
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
