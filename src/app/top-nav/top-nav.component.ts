@@ -11,4 +11,8 @@ export class TopNavComponent implements OnInit {
   ngOnInit() {
   }
 
+  test(ex: HTMLInputElement) {
+    console.log(ex.value);
+  }
+
 }

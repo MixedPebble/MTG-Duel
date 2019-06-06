@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ProfileComponent } from './profile/profile.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { IssueService } from './issue.service';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { IssueService } from './issue.service';
     UserDecksComponent,
     PageNotFoundComponent,
     ProfileComponent,
-    HomePageComponent
+    HomePageComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,15 @@
             "element",
             "app",
             "kebab-case"
+        ],
+        "typedef": [
+          true,
+          "property-declaration",
+          "variable-declaration",
+          "parameter",
+          "arrow-parameter",
+          "call-signature",
+          "arrow-call-signature"
         ]
     }
 }
