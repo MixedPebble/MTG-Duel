@@ -45,18 +45,33 @@ function createCard(card) {
   return cardSchema;
 }
 
+router.route('/cards').get((req, res) => {
+  console.log('TEST');
+  //31:00
+  Card.find((err, cards) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('cards fond');
+      res.json(cards);
+    }
+  });
+});
+
+/********************/
+
 // Post request to create new issue. Returns the issue w/ a message saying success
 router.route('/issues/add').post((req, res) => {
 });
 
 // Get request to get all issues
+
 router.route('/issues').get((req, res) => {
 
   let issue = new Issue({title: 'test'});
-  issue.save().then(issue => {
+   issue.save().then(iss => {
     console.log('saved');
-
-  })
+    });
 
   Issue.find((err, issues) => {
     if (err) {
@@ -66,6 +81,8 @@ router.route('/issues').get((req, res) => {
     }
   });
 });
+
+
 // the : signifies that it's some unused url var to get a particular collection doc
 // Gets request to get issues by ID
 router.route('/issues/:id').get((req, res) => {
