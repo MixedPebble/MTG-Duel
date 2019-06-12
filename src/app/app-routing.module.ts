@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'decks', component: UserDecksComponent },
   { path: 'battle', component: BattleComponent },
   { path: 'profile', component: ProfileComponent},
-  { path: 'search/:id', component: SearchComponent},
+  { path: 'search/:cardName', component: SearchComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 

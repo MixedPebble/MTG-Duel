@@ -9,12 +9,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private issueService: IssueService) { }
 
-  ngOnInit() {
-    console.log('hello');
-    this.issueService.getIssues().subscribe((issues) => {
-      console.log('issue');
-      console.log(issues);
-    });
+  ngOnInit(): void {
   }
 
 }

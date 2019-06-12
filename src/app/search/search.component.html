@@ -1,6 +1,42 @@
-<p>
-  search works!
-</p>
-<p>
-  {{id}}
-</p>
+<div class="container">
+  <div class="row form-group">
+    <div class="col-12">
+      <button class="btn btn-light" (click)="switchView('grid')">Grid View</button>
+      <button class="btn btn-dark" (click)="switchView('list')">List View</button>
+    </div>
+  </div>
+  <!--LGrid View-->
+
+  <div class="row form-group">
+    <!--Cards View -->
+    <ng-container *ngFor="let card of allCards">
+      <div [hidden]="cardView !== 'grid'" class="col-6 col-sm-4 col-lg-3 form-group">
+        <div class="card bg-light text-dark h-100">
+          <img class="card-img-top" src={{card.imageUrl}}
+            onError="this.src='../../assets/error/card-image-not-found.jpg';" alt="Card image cap">
+          <div class="card-body">
+            {{card.name}}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- List View -->
+    <div class="col-12">
+        <div [hidden]="cardView !== 'list'">
+            <table class="table table-dark table-striped">
+              <thead>
+                <tr scope="col">Name</tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let card of allCards">
+                  <th scope="row">
+                    {{card.name}}
+                  </th>
+                </tr>
+              </tbody>
+              </table>
+        </div>
+    </div>
+  </div>
+</div>
