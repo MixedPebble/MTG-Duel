@@ -4,11 +4,13 @@ Run `npm install` in both the frontend and backend folder
 
 In the frontend folder run `ng serve` to start the front end part of the project
 
-In the backend folder run `npm run dev` to start the back end part of the project
-
 From anywhere, run `sudo service mongod start` to start the MongoDB part of the project
 
+In the backend folder run `npm run dev` to start the back end part of the project
+
 Note: You will need to set up [MongoDB manually](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/). Use the models folder as a reference
+
+Note: If, after running the back end you don't see a message stating 'MongoDB connection established' re-run the back end as the back end tried connecting to MongoDB 
 
 # MTGDuel
 
