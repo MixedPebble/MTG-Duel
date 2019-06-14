@@ -5,9 +5,23 @@ import mongoose from 'mongoose';
 import Card from './models/card';
 import Deck from './models/deck';
 import mtg from 'mtgsdk';
-import deck from './models/deck';
 const app = express();
 const router = express.Router();
+
+/*
+https://www.youtube.com/watch?v=wPwStfoqEms 1:53
+
+app/ contains content of the app
+public/ contains views and public resources
+
+app/
+  server.js contains express server config, database initialization, server settings
+  routes.js
+  database.js
+  controllers/ contains server-side logic for each route
+*/
+
+
 
 /* BOILERPLATE */
 app.use(cors());
@@ -61,28 +75,28 @@ router.route('/cards/:cardName').get((req, res) => {
 router.route('/decks').get((req, res) => {
 
   console.log('called');
-  let deckSchema = createDeck(null);
+  let deckSchema = createDeck();
+  console.log('deckSchema');
+  console.log(deckSchema);
   deckSchema.save().then(schema => {
     console.log('it was saved?');
   }).catch(err => console.log(err));
 });
 
 function createDeck() {
-
+  console.log('called');
    Card.find({'name' : 'Air Elemental'}, (err, cards) => {
-    console.log('CARD FOUND');
-    console.log(cards);
+    // console.log('CARD FOUND');
+    // console.log(cards);
     let test = {
       name: 'hello world',
       uid: '1234567890',
-      cards: []
+      // cards: []
     }
-    // let temp = new Card();
-    // test.cards.push(temp);
-    let deckSchema = new Deck(test);
-    return deckSchema;
-    });
 
+    });
+    let deckSchema = new Deck(null);
+    return deckSchema;
 }
 
 
