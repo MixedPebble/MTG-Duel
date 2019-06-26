@@ -2,14 +2,49 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import Card from './models/card';
-import Deck from './models/deck';
-import mtg from 'mtgsdk';
+
+import cards from './routes/cards';
+import decks from './routes/decks';
+import register from './routes/register';
+import login from './routes/login';
 const app = express();
 const router = express.Router();
 
+app.use(cors());
+app.use(bodyParser.json());
+
+mongoose.connect('mongodb://localhost:27017/cards', {
+  useNewUrlParser: true
+});
+const port = 4000;
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+  console.log('MongoDB connection established');
+}).catch(err => {
+  console.log('Error connecting to MongoDB');
+});
+
+
+
+
+// app.use('/api', api);
+app.use('/cards', cards);
+app.use('/decks', decks);
+app.use('/register', register);
+app.use('/login', login);
+app.use('/', router);
+app.listen(port, () => console.log('Express server running on port:' + port));
+
+
+
+
+
+
+
+
 /*
-https://www.youtube.com/watch?v=wPwStfoqEms 1:53
+
 
 app/ contains content of the app
 public/ contains views and public resources
@@ -20,104 +55,6 @@ app/
   database.js
   controllers/ contains server-side logic for each route
 */
-
-
-
-/* BOILERPLATE */
-app.use(cors());
-app.use(bodyParser.json());
-
-mongoose.connect('mongodb://localhost:27017/cards', {
-  useNewUrlParser: true
-});
-const NodePort = 4000;
-const connection = mongoose.connection;
-
-connection.once('open', () => {
-  console.log('MongoDB connection established');
-}).catch(err => {
-  console.log('Error connecting to MongoDB');
-});
-
-/* CARD FUNCTIONALITY */
-
-router.route('/cards/add').get((req, res) => {
-  mtg.card.all().on('data', card => {
-    let cardSchema = createCard(card);
-    cardSchema.save().then(schema => {
-      console.log('Card: ' + card.title + ' saved successfully');
-    }).catch(err =>console.log(err));
-  });
-});
-function createCard(card) {
-  //TODO: rulings, foreignNames and legalities needs to be added in a custom way.
-  let cardSchema = new Card(card);
-  return cardSchema;
-}
-router.route('/cards').get((req, res) => {
-  Card.find((err, cards) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(cards);
-    }
-  });
-});
-router.route('/cards/:cardName').get((req, res) => {
-  var query = { name: req.params.value};
-  Card.find({'name' : req.params.cardName}, (err, cards) => {
-    res.json(cards);
-  });
-})
-
-/* DECK FUNCTIONALITY */
-
-router.route('/decks').get((req, res) => {
-
-  console.log('called');
-  let deckSchema = createDeck();
-  console.log('deckSchema');
-  console.log(deckSchema);
-  deckSchema.save().then(schema => {
-    console.log('it was saved?');
-  }).catch(err => console.log(err));
-});
-
-function createDeck() {
-  console.log('called');
-   Card.find({'name' : 'Air Elemental'}, (err, cards) => {
-    // console.log('CARD FOUND');
-    // console.log(cards);
-    let test = {
-      name: 'hello world',
-      uid: '1234567890',
-      // cards: []
-    }
-
-    });
-    let deckSchema = new Deck(null);
-    return deckSchema;
-}
-
-
-
-/* Run everything */
-app.use('/', router);
-app.listen(NodePort, () => console.log('Express server running on port 4000'));
-
-
-
-
-/* Notes: Delete Later */
-
-/*
-Create endpoints that angular can acces using http requests
-HTTP GET request to retrieve the list of issues from MongoDB
-HTTP GET request to retrieve a single issue by its ID
-HTTP POST request to insert or update an issue record
-HTTP delete request to remove an issue by its ID from the database
-*/
-
 /*
 router.route('/issues/:id').get((req, res) => {
   Issue.findById(req.params.id, (err, issue) => {
