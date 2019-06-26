@@ -1,34 +1,45 @@
-<div class="container-flex">
-  <div class="row form-group">
-    <div class="col-12">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a class="navbar-brand" routerLink="/">Escape hatch</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-              aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" routerLink="/battle">Battle <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" routerLink="/decks">My Decks <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" routerLink="/profile">Profile <span class="sr-only">(current)</span></a>
-                </li>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="/">Escape hatch</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+          aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input #searchInput class="form-control mr-sm-2" (keyup)="test(searchInput)" type="text"
-                  placeholder="Search Cards" aria-label="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" [routerLink]="['/search',searchInput.value ]">Search</button>
-              </form>
-            </div>
-          </nav>
-    </div>
-  </div>
-</div>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/battle" routerLinkActive="active">Battle <span
+                  class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="decks" routerLinkActive="active">My Decks <span
+                  class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile <span
+                  class="sr-only">(current)</span></a>
+            </li>
 
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/register" routerLinkActive="active">Register <span
+                    class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+            <input #searchInput class="form-control mr-sm-2" (keyup)="test(searchInput)" type="text"
+              placeholder="Search Cards" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" [routerLink]="['/search',searchInput.value ]">Search</button>
+          </form>
+        </div>
+      </nav>
+
+<!--
+  Authentication login
+  https://youtu.be/CfZ6o7CfJjs?list=PLC3y8-rFHvwg2RBz6UplKTGIXREj9dV0G&t=371
+-->

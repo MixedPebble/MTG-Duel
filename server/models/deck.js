@@ -3,7 +3,7 @@ import Card from './card';
 
 const Schema = mongoose.Schema;
 
-let Deck = new Schema({
+const Deck = new Schema({
   name: {
     type: String
   },

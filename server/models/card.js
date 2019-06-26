@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-let Card = new Schema({
+const Card = new Schema({
     name: {
     type: String
     },
