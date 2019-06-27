@@ -19,7 +19,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.11",
     "mtgsdk": "^0.4.3",
-    "mtgsdk-ts": "^1.1.2"
+    "mtgsdk-ts": "^1.1.2",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

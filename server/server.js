@@ -7,22 +7,43 @@ import cards from './routes/cards';
 import decks from './routes/decks';
 import register from './routes/register';
 import login from './routes/login';
+import socketIO from 'socket.io';
+import http from 'http';
+
 const app = express();
 const router = express.Router();
+const port = 4000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
+/* MONGOOSE STUFF */
 mongoose.connect('mongodb://localhost:27017/cards', {
   useNewUrlParser: true
 });
-const port = 4000;
 const connection = mongoose.connection;
 
 connection.once('open', () => {
   console.log('MongoDB connection established');
 }).catch(err => {
   console.log('Error connecting to MongoDB');
+});
+
+
+
+/* SOCKET.IO STUFF */
+let server = http.Server(app);
+let io = socketIO(server);
+io.on('connection', (socket) => {
+  console.log('user connected');
+
+  socket.on('new-message', (message) => {
+    console.log('message emitted');
+    io.emit('new-message',message);
+  })
+});
+server.listen(port+1, () => {
+  console.log('started???');
 });
 
 

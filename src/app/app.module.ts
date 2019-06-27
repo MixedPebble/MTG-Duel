@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ChatService } from './services/chat.service';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     SearchComponent,
     LoginComponent,
     RegisterComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     HttpClientModule
   ],
   providers: [
-    [AuthenticationService, AuthGuard],
+    [AuthenticationService, AuthGuard, ChatService],
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

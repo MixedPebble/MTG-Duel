@@ -9,12 +9,14 @@ import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
+import { ChatComponent } from './chat/chat.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'decks', component: UserDecksComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   { path: 'battle', component: BattleComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [!AuthGuard]},
   { path: 'login', component: LoginComponent },
+  { path: 'chat', component: ChatComponent },
   { path: 'profile', component: ProfileComponent},
   { path: 'search/:cardName', component: SearchComponent},
   { path: '**', component: PageNotFoundComponent }

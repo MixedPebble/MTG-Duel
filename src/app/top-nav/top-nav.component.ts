@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service'
 @Component({
   selector: 'app-top-nav',
   templateUrl: './top-nav.component.html',
@@ -6,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopNavComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn: boolean;
 
-  ngOnInit() {
+  constructor(private _auth: AuthenticationService) { }
+
+  ngOnInit(): void {
+    this.isLoggedIn = this._auth.isLoggedIn();
   }
 
-  test(ex: HTMLInputElement) {
-    console.log(ex.value);
+  logOut(): void {
+    this._auth.logOut();
   }
 
 }

@@ -5,7 +5,7 @@ import verifyToken from '../middleware/token-verification'
 
 const router = express.Router();
 
-router.route('/add').get((req, res) => {
+router.get('/add',verifyToken.verifyToken,(req, res) => {
   mtg.card.all().on('data', card => {
     let cardSchema = createCard(card);
     cardSchema.save().then(schema => {
@@ -14,7 +14,7 @@ router.route('/add').get((req, res) => {
   });
 });
 
-router.route('/').get((req, res) => {
+router.get('/',(req, res) => {
   Card.find((err, cards) => {
     if (err) {
       console.log('JEE WIZ BATMAN! ' + err);
@@ -25,7 +25,7 @@ router.route('/').get((req, res) => {
 });
 
 router.get('/:cardName',verifyToken.verifyToken,(req, res) => {
-  console.log('getting cards with name');
+  console.log('querrying');
   var query = { name: req.params.value};
   Card.find({'name' : req.params.cardName}, (err, cards) => {
     res.json(cards);
